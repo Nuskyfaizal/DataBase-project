@@ -1,0 +1,78 @@
+<div class="input-form">
+  <div class="cancel-button">
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      routerLink="/"
+    ></button>
+  </div>
+
+  <div>
+    <form class="form-element" autocomplete="off" #addProduct="ngForm">
+      <input type="number" name="id" ngModel id="id" placeholder="ID" />
+      <input
+        type="text"
+        name="name"
+        ngModel
+        id="name"
+        placeholder="Product Name"
+      />
+      <input
+        type="text"
+        name="description"
+        ngModel
+        id="description"
+        placeholder="Description"
+      />
+      <input
+        type="number"
+        name="purchasedQty"
+        ngModel
+        id="purchased"
+        placeholder="Purchased Qty"
+      />
+      <input
+        type="number"
+        name="soldQty"
+        ngModel
+        id="sold"
+        placeholder="Sold Qty"
+      />
+      <input
+        type="text"
+        name="supplier"
+        ngModel
+        id="supplier"
+        placeholder="Supplier"
+      />
+      <input
+        type="number"
+        name="costPrice"
+        ngModel
+        id="cost"
+        placeholder="Cost Price"
+      />
+      <input
+        type="number"
+        name="sellingPrice"
+        ngModel
+        id="selling"
+        placeholder="Selling Price"
+      />
+
+      <div class="add-button">
+        <div class="d-grid gap-2">
+          <button
+            style="width: 100%"
+            class="btn btn-primary"
+            type="button"
+            (click)="addNewProduct(addProduct.value)"
+          >
+            Add
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

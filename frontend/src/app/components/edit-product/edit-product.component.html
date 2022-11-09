@@ -1,0 +1,86 @@
+<div class="input-form">
+  <div class="cancel-button">
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      routerLink="/"
+    ></button>
+  </div>
+
+  <div>
+    <form class="form-element" autocomplete="off" #addProduct="ngForm">
+      <input
+        type="number"
+        name="id"
+        disabled
+        [(ngModel)]="productModel.id"
+        id="id"
+        placeholder="ID"
+      />
+      <input
+        type="text"
+        name="name"
+        disabled
+        [(ngModel)]="productModel.name"
+        id="name"
+        placeholder="Product Name"
+      />
+      <input
+        type="text"
+        name="description"
+        [(ngModel)]="productModel.description"
+        id="description"
+        placeholder="Description"
+      />
+      <input
+        type="number"
+        name="purchasedQty"
+        [(ngModel)]="productModel.purchasedQty"
+        id="purchased"
+        placeholder="Purchased Qty"
+      />
+      <input
+        type="number"
+        name="soldQty"
+        [(ngModel)]="productModel.soldQty"
+        id="sold"
+        placeholder="Sold Qty"
+      />
+      <input
+        type="text"
+        name="supplier"
+        [(ngModel)]="productModel.supplier"
+        id="supplier"
+        placeholder="Supplier"
+      />
+      <input
+        type="number"
+        name="costPrice"
+        [(ngModel)]="productModel.costPrice"
+        id="cost"
+        placeholder="Cost Price"
+      />
+      <input
+        type="number"
+        name="sellingPrice"
+        [(ngModel)]="productModel.sellingPrice"
+        id="selling"
+        placeholder="Selling Price"
+      />
+
+      <div class="add-button">
+        <div class="d-grid gap-2">
+          <button
+            style="width: 100%"
+            class="btn btn-primary"
+            type="button"
+            (click)="editProduct(addProduct.value)"
+          >
+            Edit
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

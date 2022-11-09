@@ -1,0 +1,14 @@
+.search-bar, .add-button{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+.add-button{
+  margin-top: 40px;
+}
+
+
+

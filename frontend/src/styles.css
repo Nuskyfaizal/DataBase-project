@@ -1,0 +1,76 @@
+/* You can add global styles to this file, and also import other style files */
+@import '../node_modules/bootstrap/dist/css/bootstrap.css';
+
+*{
+  box-sizing: border-box;
+}
+
+body{
+  background-color: wheat;
+}
+
+html, body{
+  height:100%;
+}
+
+td,tr{
+  text-align: center;
+}
+
+.home-container{
+  margin: 25px 30px;
+}
+
+.search-bar{
+  margin-bottom: 40px;
+}
+
+.table-component{
+  background-color: bisque;
+  width: 100%;
+}
+
+.table-heading{
+  background-color: burlywood;
+}
+
+.input-form{
+  margin: 50px;
+  border: 2px solid black;
+  border-radius: 15px;
+  background-color: antiquewhite;
+  position: relative;
+}
+
+.cancel-button{
+  position: absolute;
+  top: 15px;
+  right: 20px;
+}
+
+.add-button{
+  display: flex;
+  margin-top: 30px;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.form-element{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  margin-top: 30px;
+}
+
+input{
+  margin: 10px;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+input:focus{
+  background-color: honeydew;
+}
