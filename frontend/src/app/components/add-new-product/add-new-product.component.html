@@ -10,14 +10,40 @@
 
   <div>
     <form class="form-element" autocomplete="off" #addProduct="ngForm">
-      <input type="number" name="id" ngModel id="id" placeholder="ID" />
+      <input
+        type="number"
+        name="id"
+        ngModel
+        id="id"
+        placeholder="ID"
+
+        required
+        pattern="^\d{4}$"
+        #id="ngModel"
+        [class.not-valid]="id.invalid && id.touched"
+        [ngClass]="{'valid': id.valid}"
+      />
+      <div *ngIf="id.errors && id.invalid">
+        <small class="error-message" *ngIf="id.errors.required && id.touched">ID field is required & must be numbers</small>
+        <small class="error-message-1" *ngIf="id.errors.pattern">ID field must be 4 characters long</small>
+      </div> <br>
+
       <input
         type="text"
         name="name"
         ngModel
         id="name"
         placeholder="Product Name"
+
+        required
+        #name="ngModel"
+        [class.not-valid]="name.invalid && name.touched"
+        [class.valid]="name.valid"
       />
+      <div *ngIf="name.errors && name.invalid">
+        <small class="error-message-1" *ngIf="name.errors.required && name.touched">Name field is required </small>
+      </div> <br>
+
       <input
         type="text"
         name="description"
@@ -25,45 +51,85 @@
         id="description"
         placeholder="Description"
       />
+
       <input
         type="number"
         name="purchasedQty"
         ngModel
         id="purchased"
         placeholder="Purchased Qty"
+
+        #purchasedQty="ngModel"
       />
+
       <input
         type="number"
         name="soldQty"
         ngModel
         id="sold"
         placeholder="Sold Qty"
+
+        #soldQty="ngModel"
+        (input)="validateQty(purchasedQty.value,soldQty.value)"
       />
+      <small class="error-message-1" *ngIf="hasError">Sold Quantity cannot be larger than Purchased Quantity</small>
+
       <input
         type="text"
         name="supplier"
         ngModel
         id="supplier"
         placeholder="Supplier"
+
+        required
+        #supplier="ngModel"
+        [class.not-valid]="supplier.invalid && supplier.touched"
+        [class.valid]="supplier.valid"
       />
+      <div *ngIf="supplier.errors && supplier.invalid">
+        <small class="error-message-1" *ngIf="supplier.errors.required && supplier.touched">Supplier field is required </small>
+      </div> <br>
+
       <input
         type="number"
         name="costPrice"
         ngModel
         id="cost"
         placeholder="Cost Price"
+
+        required
+        #costPrice="ngModel"
+        [class.not-valid]="costPrice.invalid && costPrice.touched"
+        [class.valid]="costPrice.valid"
       />
+      <div *ngIf="costPrice.errors && costPrice.invalid">
+        <small class="error-message-1" *ngIf="costPrice.errors.required && costPrice.touched">Cost Price field is required </small>
+      </div> <br>
+
+
       <input
         type="number"
         name="sellingPrice"
         ngModel
         id="selling"
         placeholder="Selling Price"
+
+        required
+        #sellingPrice="ngModel"
+        [class.not-valid]="sellingPrice.invalid && sellingPrice.touched"
+        [class.valid]="sellingPrice.valid"
       />
+      <div *ngIf="sellingPrice.errors && sellingPrice.invalid">
+        <small class="error-message-1" *ngIf="sellingPrice.errors.required && sellingPrice.touched">Selling Price field is required </small>
+      </div> <br>
+
+<!-- To debug whether form is valid {{addProduct.form.valid}}-->
 
       <div class="add-button">
         <div class="d-grid gap-2">
           <button
+            [disabled]="addProduct.form.invalid && purchasedQty.value < soldQty.value"
+            [class.disabled-button] ="addProduct.form.invalid && purchasedQty.value < soldQty.value"
             style="width: 100%"
             class="btn btn-primary"
             type="button"

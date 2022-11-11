@@ -1,5 +1,5 @@
 import { ThrowStmt } from '@angular/compiler';
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Product } from 'src/app/models/poduct.model';
 import { ProductserviceService } from 'src/app/productservice.service';
 
@@ -9,14 +9,17 @@ import { ProductserviceService } from 'src/app/productservice.service';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
+
   products: Product[];
 
   constructor(private service: ProductserviceService) {}
 
   ngOnInit(): void {
+
     this.service.getAllProducts().subscribe((productList: Product[]) => {
       console.log(productList);
       this.products = productList;
+
     });
   }
 

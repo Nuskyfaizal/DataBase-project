@@ -35,7 +35,10 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let product of products">
+        <tr>
+          <td *ngIf="products.length == 0" colspan="10">No products in the DataBase to Display. Please add new products.</td>
+        </tr>
+        <tr *ngFor="let product of products" [ngClass] ="{'lessOnQty' :product.availableQty<10}">
           <td>{{ product.id }}</td>
           <td>{{ product.name }}</td>
           <td>{{ product.description }}</td>
@@ -55,7 +58,7 @@
             <i
               (click)="deleteOneProduct(product.id)"
               class="fas fa-trash"
-              style="font-size: 24px"
+              style="font-size: 24px; cursor: pointer;"
             ></i>
           </td>
         </tr>

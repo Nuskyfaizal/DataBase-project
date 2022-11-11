@@ -10,28 +10,41 @@ import { Router } from '@angular/router';
   styleUrls: ['./add-new-product.component.css'],
 })
 export class AddNewProductComponent implements OnInit {
+
+  hasError = false
   constructor(private service: ProductserviceService, private route: Router) {}
 
   ngOnInit(): void {}
 
+  validateQty(purchase,sold){
+    if(purchase < sold) {
+      this.hasError = true
+    } else {
+      this.hasError = false
+    }
+  }
+
   addNewProduct(formval: Product) {
     let availQty = formval.purchasedQty - formval.soldQty;
 
-    let addProduct: Product = {
-      id: formval.id,
-      name: formval.name,
-      description: formval.description,
-      purchasedQty: formval.purchasedQty,
-      soldQty: formval.soldQty,
-      availableQty: availQty,
-      supplier: formval.supplier,
-      costPrice: formval.costPrice,
-      sellingPrice: formval.sellingPrice,
-    };
+    if(formval.purchasedQty > formval.soldQty){
+      let addProduct: Product = {
+        id: formval.id,
+        name: formval.name,
+        description: formval.description,
+        purchasedQty: formval.purchasedQty,
+        soldQty: formval.soldQty,
+        availableQty: availQty,
+        supplier: formval.supplier,
+        costPrice: formval.costPrice,
+        sellingPrice: formval.sellingPrice,
+      };
 
-    this.service.postProduct(addProduct).subscribe((res) => {
-      console.log(res);
-      this.route.navigate(['']);
-    });
+      this.service.postProduct(addProduct).subscribe((res) => {
+        console.log(res);
+        this.route.navigate(['']);
+      });
+    }
+
   }
 }

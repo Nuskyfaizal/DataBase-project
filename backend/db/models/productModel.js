@@ -16,19 +16,15 @@ const ProductSchema = new mongoose.Schema({
     },
     purchasedQty:{
         type: Number,
-        required:true
     },
     soldQty:{
         type:Number,
-        required:true
     },
     availableQty:{
         type:Number,
-        required:true
     },
     supplier:{
         type:String,
-        required:true
     },
     costPrice:{
         type:Number,
