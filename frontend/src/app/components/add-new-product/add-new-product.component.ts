@@ -16,7 +16,7 @@ export class AddNewProductComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  validateQty(purchase,sold){
+  validateQty(purchase: Number,sold: Number){
     if(purchase < sold) {
       this.hasError = true
     } else {
