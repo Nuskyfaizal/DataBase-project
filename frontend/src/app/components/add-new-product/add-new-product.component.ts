@@ -44,7 +44,7 @@ export class AddNewProductComponent implements OnInit {
         this.route.navigate(['']);
       });
     } else {
-      alert('asdasdasd');
+      alert('asdaszxcxzccdasd');
     }
   }
 }
