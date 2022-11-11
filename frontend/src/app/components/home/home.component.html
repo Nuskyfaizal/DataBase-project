@@ -3,17 +3,25 @@
     <form class="row row-cols-lg-auto g-3 align-items-center">
       <div class="col-12">
         <div class="input-group">
-          <input #productSearch
+          <input
+            #productSearch
             type="text"
             style="background-image: url('searchicon.png')"
             class="form-control"
             id="inlineFormInputGroupUsername"
             placeholder="Search..."
+            (input)="searchProduct(productSearch.value)"
           />
         </div>
       </div>
       <div class="col-12">
-        <button type="submit" class="btn btn-primary" (click)="searchProduct(productSearch.value)">Search</button>
+        <button
+          type="submit"
+          class="btn btn-primary"
+          (click)="searchProduct(productSearch.value)"
+        >
+          Search
+        </button>
       </div>
     </form>
   </div>
@@ -36,9 +44,14 @@
       </thead>
       <tbody>
         <tr>
-          <td *ngIf="products.length == 0" colspan="10">No products in the DataBase to Display. Please add new products.</td>
+          <td *ngIf="products.length == 0" colspan="10">
+            No products in the DataBase to Display. Please add new products.
+          </td>
         </tr>
-        <tr *ngFor="let product of products" [ngClass] ="{'lessOnQty' :product.availableQty<10}">
+        <tr
+          *ngFor="let product of products"
+          [ngClass]="{ lessOnQty: product.availableQty < 10 }"
+        >
           <td>{{ product.id }}</td>
           <td>{{ product.name }}</td>
           <td>{{ product.description }}</td>
@@ -58,7 +71,7 @@
             <i
               (click)="deleteOneProduct(product.id)"
               class="fas fa-trash"
-              style="font-size: 24px; cursor: pointer;"
+              style="font-size: 24px; cursor: pointer"
             ></i>
           </td>
         </tr>

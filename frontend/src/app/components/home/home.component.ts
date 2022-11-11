@@ -9,36 +9,51 @@ import { ProductserviceService } from 'src/app/productservice.service';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-
   products: Product[];
+  productsFromDb: Product[];
 
   constructor(private service: ProductserviceService) {}
 
   ngOnInit(): void {
-
-    this.service.getAllProducts().subscribe((productList: Product[]) => {
-      console.log(productList);
-      this.products = productList;
-
-    });
+    this.GetAllProductsFromDb();
   }
 
   deleteOneProduct(productId: Number) {
     this.service.deleteProduct(+productId).subscribe(() => {
-      this.service.getAllProducts().subscribe((productList: Product[]) => {
-        this.products = productList;
-      });
+      this.GetAllProductsFromDb();
     });
   }
 
-  searchProduct(text){
-    let foundItems = [];
+  searchProduct(text) {
+    // let foundItems = [];
+    var s = '';
+    if (!text) {
+      this.products = this.productsFromDb;
+    }
+    this.products = this.productsFromDb.filter(
+      (product) =>
+        product.name.toLowerCase().includes(text.toLowerCase()) ||
+        product.description.toLowerCase().includes(text.toLowerCase())
+    );
 
-      text = this.products.filter((product) => {
-        if (product.name.toLowerCase().indexOf(text) > -1) {
-          foundItems.push(product);
-          this.products = foundItems;
-        }
-      });
+    // this.products = this.products.((product) => {
+    //   if (product.name.toLowerCase().indexOf(text) > -1) {
+    //     foundItems.push(product);
+    //     this.products = foundItems;
+    //   }
+    // });
+  }
+
+  private GetAllProductsFromDb() {
+    this.service.getAllProducts().subscribe(
+      (productList: Product[]) => {
+        console.log(productList);
+        this.productsFromDb = productList;
+        this.products = productList;
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 }

@@ -10,41 +10,41 @@ import { Router } from '@angular/router';
   styleUrls: ['./add-new-product.component.css'],
 })
 export class AddNewProductComponent implements OnInit {
-
-  hasError = false
+  hasError = false;
   constructor(private service: ProductserviceService, private route: Router) {}
 
   ngOnInit(): void {}
 
-  validateQty(purchase: Number,sold: Number){
-    if(purchase < sold) {
-      this.hasError = true
+  validateQty(purchase: Number, sold: Number) {
+    if (purchase < sold) {
+      this.hasError = true;
     } else {
-      this.hasError = false
+      this.hasError = false;
     }
   }
 
-  addNewProduct(formval: Product) {
-    let availQty = formval.purchasedQty - formval.soldQty;
+  addNewProduct(formValue: Product) {
+    let availQty = formValue.purchasedQty - formValue.soldQty;
 
-    if(formval.purchasedQty > formval.soldQty){
+    if (formValue.purchasedQty > formValue.soldQty) {
       let addProduct: Product = {
-        id: formval.id,
-        name: formval.name,
-        description: formval.description,
-        purchasedQty: formval.purchasedQty,
-        soldQty: formval.soldQty,
+        id: formValue.id,
+        name: formValue.name,
+        description: formValue.description,
+        purchasedQty: formValue.purchasedQty,
+        soldQty: formValue.soldQty,
         availableQty: availQty,
-        supplier: formval.supplier,
-        costPrice: formval.costPrice,
-        sellingPrice: formval.sellingPrice,
+        supplier: formValue.supplier,
+        costPrice: formValue.costPrice,
+        sellingPrice: formValue.sellingPrice,
       };
 
       this.service.postProduct(addProduct).subscribe((res) => {
         console.log(res);
         this.route.navigate(['']);
       });
+    } else {
+      alert('asdasdasd');
     }
-
   }
 }
